@@ -8,8 +8,7 @@ function correctAnswer() {
    if(znak=='+' && wynik==num1+num2 ||
       znak=='-' && wynik==num1-num2) {
        return true;
-   } else 
-       return false;
+   }
 }
 
 
@@ -73,6 +72,7 @@ function pobierzTury() {
 
 //  Pokazanie ekranu z rozgrywką
 function offStart() {
+    select('.stylizing').hide();
     select('#all').show();
     select('#restart').hide();
     select('.sumup').hide();
@@ -99,7 +99,7 @@ function incrementTura() {
 }
 
 function endOfGame() {
-    if(tura>ile_tur) return true;
+    if(tura == ile_tur) return true;
     else return false;
 }
 
