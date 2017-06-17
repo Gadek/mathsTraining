@@ -1,24 +1,25 @@
-var num1,num2,znak,correctAnswer,tura=1,points=0,czas1, czas2, sek,start=false,counting,okS,not_okS;
-var ile_tur = 3 ; time = 4000;
-function setup() {
-    noCanvas();
-    select('#restart').mouseReleased(startGame);
-    select('#input').changed(count);
-    prepareNext();
-}
+var num1,num2,znak,tura=1,points=0,czas1, czas2, sek,start=false,counting,goodAnswer,badAnswer;
+var ile_tur , time, zakres;
+
+
+$('#restart').click(startGame); //zapis w jQuery
+
+document.getElementById('input').addEventListener("change",count); //zapis w oryginalnym JS
 
 
 // ----  GRA NA CZAS
 function draw() {
     if(start) {
-        var c = new Date().getTime();
-        if(c-counting>time){
-            counting = new Date().getTime();
-            showCorrectAnswer();
+        
+        // --- Jeśli czas na odpowiedź minął
+        if(timeOver()){
             showFALSE();
-            prepareNext();
+            badAnswer.play();
+            showCorrectAnswer();
+           
             incrementTura();
-            not_okS.play();
+            prepareNext();
+
             if(endOfGame()) {
                 czas2 = new Date().getTime();
                 sumUp();
@@ -29,29 +30,42 @@ function draw() {
 }
 // ----
 
+
+
+//  Kliknięcie w przycisk START
 function startGame() {
+    tura = 1;
+    points = 0;
+    pobierzZakres();
+    pobierzCzas();
+    prepareNext();
+    pobierzTury();
+    
     offStart();
-    showAndHideWhatNecessary();
     czas1 = new Date().getTime();
-    start = true;
     counting = czas1;
+    start = true;
 }
 
+
+
+// Kiedy udzielisz odpowiedzi
 function count() {
-    counting = new Date().getTime();
-    checkAnswer();
-    if(correctAnswer) {
+    
+    if(correctAnswer()) {
         showTRUE();
         addPoint();
-        okS.play()
+        goodAnswer.play()
     } else {
         showFALSE()
+        badAnswer.play();
         showCorrectAnswer();
-        not_okS.play();
     }
-    prepareNext();
-    incrementTura();
     
+    incrementTura();
+    prepareNext();
+                    
+
     if(endOfGame()) {
         czas2 = new Date().getTime();
         sumUp();
@@ -59,48 +73,24 @@ function count() {
     } 
 }
 
+
+
+
+// Kiedy skończą się wszystkie tury
 function sumUp() {
     select('#all').hide();
     select('#restart').show();
     select('.sumup').show();
+    select('#intro').show();
     select('#points').html(points);
-    tura = 1;
-    points = 0;
-    var czas = floor((czas2 - czas1)/(10*ile_tur))/100;
-    select('#time').html(czas);
+    select('.true').hide();
+    select('.false').hide();
+    var sredniCzas = floor((czas2 - czas1)/(10*ile_tur))/100;
+    select('#time').html(sredniCzas);
 }
 
-function checkAnswer() {
-    num1 = floor(select('#num1').html());
-    num2 = floor(select('#num2').html());
-    znak = select('#znak').html();
-    wynik = floor(select('#input').value());
-   if(znak=='+' && wynik==num1+num2 ||
-      znak=='-' && wynik==num1-num2) {
-       correctAnswer = true;
-   } else {
-       correctAnswer = false;
-   }
-}
-
-
-
-function endOfGame() {
-    if(tura>ile_tur) return true;
-    else return false;
-}
-
-function showCorrectAnswer() {
-    var poprawny;
-    num1 = floor(select('#num1').html());
-    num2 = floor(select('#num2').html());
-    znak = select('#znak').html();
-    if(znak=='-') poprawny = num1-num2;
-    if(znak=='+') poprawny = num1+num2;
-    select('#correct').html(poprawny);
-}
 
 function preload() {
-    okS = loadSound('sound/goodAnswer.mp3');
-    not_okS = loadSound('sound/badAnswer.mp3');
+    goodAnswer = loadSound('sound/goodAnswer.mp3');
+    badAnswer = loadSound('sound/badAnswer.mp3');
 }
