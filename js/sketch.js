@@ -17,14 +17,14 @@ function draw() {
             badAnswer.play();
             showCorrectAnswer();
            
-            incrementTura();
-            prepareNext();
-
-            if(endOfGame()) {
-                czas2 = new Date().getTime();
-                sumUp();
-                start = false; 
-            }
+           if(!endOfGame()) {
+				incrementTura();
+				prepareNext();
+			} else {
+				czas2 = new Date().getTime();
+				sumUp();
+				start=false;
+			}   
         }
     }
 }
@@ -62,15 +62,14 @@ function count() {
         showCorrectAnswer();
     }
     
-    incrementTura();
-    prepareNext();
-                    
-
-    if(endOfGame()) {
-        czas2 = new Date().getTime();
+	if(!endOfGame()) {
+        incrementTura();
+		prepareNext();
+    } else {
+		czas2 = new Date().getTime();
         sumUp();
         start=false;
-    } 
+	}    
 }
 
 
