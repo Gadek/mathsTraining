@@ -6,10 +6,7 @@
         <link type="text/css" rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
-        <script language="javascript" src="libraries/p5.dom.js"></script>
-        <script language="javascript" src="libraries/p5.sound.js"></script>
+        
         
     </head>
     <body>
@@ -40,14 +37,14 @@
          <label>12 <input type="radio" name="tury" value="12" id="l5"></label><br>
         </div>
         </div>
-        <div class="stylizing"></div>
-        <p class="sumup">Udało Ci się uzyskać <span id="points">0</span> punktów!<br>
+        <div id="stylizing"></div>
+        <p id="sumUp">Udało Ci się uzyskać <span id="points">0</span> punktów!<br>
         Zajęło Ci to średnio <span id="time"></span> sekund na rachunek.</p>
         
         
         
         <div id="all">
-            <p id="tura">Tura: <span class="tura">1</span>/<span class="ile_tur"></span></p>
+            <p class="tura">Tura: <span id="tura">1</span>/<span id="ile_tur"></span></p>
             <p id="equation">
             <span id="num1">100</span> <span id="znak">+</span> <span id="num2">80</span></p>
             <input id="input" autofocus>
