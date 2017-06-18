@@ -1,44 +1,41 @@
-// Sprawdza, czy udzieliłeś poprawną odpowiedź
+// --- Sprawdza, czy udzieliłeś poprawną odpowiedź
 function correctAnswer() {
-    num1 = floor(select('#num1').html());
-    num2 = floor(select('#num2').html());
-    znak = select('#znak').html();
-    wynik = floor(select('#input').value());
-	
+    num1 = Math.floor(document.getElementById('num1').innerHTML);
+    num2 = Math.floor(document.getElementById('num2').innerHTML);
+    znak = document.getElementById('znak').innerHTML;
+    wynik = Math.floor(document.getElementById('input').value);
+
    if(znak=='+' && wynik==num1+num2 ||
       znak=='-' && wynik==num1-num2) {
        return true;
    }
 }
 
-
-// Pokazuje poprawną odpowiedź
+// ---  Pokazuje poprawną odpowiedź
 function showCorrectAnswer() {
-    num1 = floor(select('#num1').html());
-    num2 = floor(select('#num2').html());
-    znak = select('#znak').html();
-    
+    num1 = Math.floor(document.getElementById('num1').innerHTML);
+    num2 = Math.floor(document.getElementById('num2').innerHTML);
+    znak = document.getElementById('znak').innerHTML;
+
     var poprawny;
     if(znak=='-') poprawny = num1-num2;
     if(znak=='+') poprawny = num1+num2;
-    select('#correct').html(poprawny);
+    document.getElementById('correct').innerHTML = poprawny;
 }
 
 
-// Przygotowanie równania, resetowanie czasu
+// ---  Przygotowuje równania i resetuje czas
 function prepareNext() {
-    select('#input').value('');   
-    select('.tura').html(tura);
-    
-    select('#num1').html(floor(random(15,zakres)));
-    select('#num2').html(floor(random(5,zakres)));
-    if(random(1)<0.5) select('#znak').html('+')
-    else select('#znak').html('-');
-    
+    document.getElementById('input').value = '';
+    document.getElementById('tura').innerHTML = tura;
+
+    document.getElementById('num1').innerHTML = Math.floor(Math.random()*zakres);
+    document.getElementById('num2').innerHTML = Math.floor(Math.random()*zakres);
+    if(Math.random()<0.5) document.getElementById('znak').innerHTML = '+'
+    else document.getElementById('znak').innerHTML = '-'
+
     counting = new Date().getTime();
 }
-
-
 
 // radio  input - wybór zakresu liczb
 function pobierzZakres() {
@@ -65,46 +62,83 @@ function pobierzTury() {
     if(document.getElementById('l3').checked) ile_tur = Math.floor(document.getElementById('l3').value);
     if(document.getElementById('l4').checked) ile_tur = Math.floor(document.getElementById('l4').value);
     if(document.getElementById('l5').checked) ile_tur = Math.floor(document.getElementById('l5').value);
-    
-    select('.ile_tur').html(ile_tur);
+
+    document.getElementById('ile_tur').innerHTML = ile_tur;
 }
 
-
-//  Pokazanie ekranu z rozgrywką
+// --- Pokazanie ekranu z rozgrywką i schowanie początku
 function offStart() {
-    select('.stylizing').hide();
-    select('#all').show();
-    select('#restart').hide();
-    select('.sumup').hide();
-    select('#intro').hide();
+    document.getElementById('stylizing').style.display = 'none';
+    document.getElementById('all').style.display = 'block';
+    document.getElementById('restart').style.display = 'none';
+    document.getElementById('sumUp').style.display = 'none';
+    document.getElementById('intro').style.display = 'none';
 }
 
+// --- Pokazuje informacje o błednej odpowiedzi
 function showFALSE() {
-    select('.false').show();
-    select('.true').hide();
+    document.getElementsByClassName('false')[0].style.display = 'block';
+    document.getElementsByClassName('true')[0].style.display = 'none';
 }
 
+// --- Pokazuje informacje o prawidłowej odpowiedzi
 function showTRUE() {
-    select('.true').show();
-    select('.false').hide();
+    document.getElementsByClassName('false')[0].style.display = 'none';
+    document.getElementsByClassName('true')[0].style.display = 'block';
 }
 
+// --- Dodaje punkt, gdy udzieliłeś poprawnej odpowiedzi
 function addPoint() {
     points++;
 }
 
-
+// --- Zwiększa liczbę tur
 function incrementTura() {
     tura++;
 }
 
+// --- Sprawdza, czy to jest ostatnia tura
 function endOfGame() {
     if(tura == ile_tur) return true;
     else return false;
 }
 
+
+// --- Sprawdza, czy czas na pojedynczą odpowiedź minął
  function timeOver() {
      var c = new Date().getTime();
      if(c - counting > time) return true;
      else return false;
  }
+
+// --- Zaczyna odmierzać czas
+function startCountingDown() {
+    czas1 = new Date().getTime();
+    counting = czas1;
+    go=true
+    setInterval(countDown,1)
+}
+
+// --- Zatrzymuje odliczanie czasu
+function stopCountingDown() {
+    czas2 = new Date().getTime();
+}
+
+// --- Pokazuje ekran z podsumowaniem
+function sumUp() {
+    document.getElementById('all').style.display = 'none';
+    document.getElementById('restart').style.display = 'block';
+    document.getElementById('sumUp').style.display = 'block';
+    document.getElementById('intro').style.display = 'block';
+    document.getElementById('points').innerHTML = points;
+    document.getElementsByClassName('true')[0].style.display = 'none';
+    document.getElementsByClassName('false')[0].style.display = 'none';
+    var sredniCzas = Math.floor((czas2 - czas1)/(10*ile_tur))/100;
+    document.getElementById('time').innerHTML = sredniCzas;
+}
+
+// --- Odgrywa dźwięk na złą odpowiedź
+function playBadAnswer() {
+    badAnswer.currentTime = 0;
+    badAnswer.play();
+}
