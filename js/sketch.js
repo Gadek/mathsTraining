@@ -1,95 +1,76 @@
-var num1,num2,znak,tura=1,points=0,czas1, czas2, sek,start=false,counting,goodAnswer,badAnswer;
+// --- Zarezerwuj zmienne
+var num1,num2,znak,tura=1,points=0,czas1, czas2, sek,start=false,counting,goodAnswer,badAnswer,go=false;
 var ile_tur , time, zakres;
 
+// --- Wczytaj dźwięki
+badAnswer = new Audio("sound/badAnswer.mp3");
+goodAnswer = new Audio("sound/goodAnswer.mp3");
 
-$('#restart').click(startGame); //zapis w jQuery
+// --- Ustaw zdarzenia
+document.getElementById('restart').addEventListener("click",restartButton);
+document.getElementById('input').addEventListener("change",count);
 
-document.getElementById('input').addEventListener("change",count); //zapis w oryginalnym JS
+
 
 
 // ----  GRA NA CZAS
-function draw() {
-    if(start) {
-        
-        // --- Jeśli czas na odpowiedź minął
-        if(timeOver()){
+function countDown() {
+    if(go) {
+
+    // --- Jeśli czas na odpowiedź minął
+        if(timeOver()) {
             showFALSE();
-            badAnswer.play();
+            playBadAnswer();
             showCorrectAnswer();
-           
-           if(!endOfGame()) {
-				incrementTura();
-				prepareNext();
-			} else {
-				czas2 = new Date().getTime();
-				sumUp();
-				start=false;
-			}   
+
+            if(!endOfGame()) {
+                incrementTura();
+                prepareNext();
+            } else {
+                stopCountingDown();
+                go=false;
+                sumUp();
+            }
         }
     }
 }
-// ----
 
 
 
 //  Kliknięcie w przycisk START
-function startGame() {
+function restartButton() {
     tura = 1;
     points = 0;
     pobierzZakres();
     pobierzCzas();
-    prepareNext();
     pobierzTury();
+    prepareNext();
     
     offStart();
-    czas1 = new Date().getTime();
-    counting = czas1;
-    start = true;
+    startCountingDown();
 }
 
 
 
 // Kiedy udzielisz odpowiedzi
 function count() {
-    
+
     if(correctAnswer()) {
         showTRUE();
+        goodAnswer.play();
         addPoint();
-        goodAnswer.play()
     } else {
-        showFALSE()
-        badAnswer.play();
+        showFALSE();
+        playBadAnswer();
         showCorrectAnswer();
     }
-    
+
 	if(!endOfGame()) {
         incrementTura();
-		prepareNext();
+        prepareNext();
     } else {
-		czas2 = new Date().getTime();
+        stopCountingDown();
         sumUp();
-        start=false;
-	}    
-}
-
-
-
-
-// Kiedy skończą się wszystkie tury
-function sumUp() {
-    select('#all').hide();
-    select('#restart').show();
-    select('.sumup').show();
-    select('#intro').show();
-    select('#points').html(points);
-    select('.true').hide();
-    select('.false').hide();
-    var sredniCzas = floor((czas2 - czas1)/(10*ile_tur))/100;
-    select('#time').html(sredniCzas);
-}
-
-
-function preload() {
-    goodAnswer = loadSound('sound/goodAnswer.mp3');
-    badAnswer = loadSound('sound/badAnswer.mp3');
+        go=false;
+	}
 }
