@@ -1,37 +1,45 @@
-* {margin:0;padding:0;color: white;}
+* {
+    margin:0;   
+    padding:0;
+    color: white;
+    text-align:center;
+}
 body {
     height:100vh;
     background: -moz-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(83,86,181,1)), color-stop(37%, rgba(65,63,110,1)), color-stop(55%, rgba(50,53,122,1)), color-stop(89%, rgba(43,34,79,1)), color-stop(100%, rgba(43,34,79,1)));
-background: -webkit-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
-background: -o-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
-background: -ms-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
-background: linear-gradient(to bottom, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5356b5', endColorstr='#2b224f', GradientType=0 );
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(83,86,181,1)), color-stop(37%, rgba(65,63,110,1)), color-stop(55%, rgba(50,53,122,1)), color-stop(89%, rgba(43,34,79,1)), color-stop(100%, rgba(43,34,79,1)));
+    background: -webkit-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
+    background: -o-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
+    background: -ms-linear-gradient(top, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
+    background: linear-gradient(to bottom, rgba(83,86,181,1) 0%, rgba(65,63,110,1) 37%, rgba(50,53,122,1) 55%, rgba(43,34,79,1) 89%, rgba(43,34,79,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5356b5', endColorstr='#2b224f', GradientType=0 );
 }
 
-p.menu {
+h1.menu {
     border-bottom: 5px solid black;
     margin-bottom: 5px;
     font-size: 2em;
     padding:10px;
-    background-color: #444
+    background-color: #444;
+    text-align:left;
+}
+#intro {
+    font-size:1.3em;
+    padding: 30px 0 20px 0;
 }
 
-#equation {
-    text-align:center;
-    padding: 50px 0 30px 0;
-    font-size: 5em;
+#zakres, #czas, #tury {
+    display:inline-block;
 }
-#input {
-    display: block;
-    margin:auto;
-    color: black;
-    padding: 5px;
-    font-size: 1.5em;
-    width:120px;
-    outline-style: groove;
+#stylizing {
+    height:57px;
 }
+#sumUp {
+    font-size:1.5em;
+    display:none;
+    
+}
+
 #all {
     display:none;
     border: 10px solid black;
@@ -47,33 +55,42 @@ p.menu {
     -moz-box-shadow: 2px -4px 31px 5px rgba(255,255,255,0.25);
     box-shadow: 2px -4px 31px 5px rgba(255,255,255,0.25);
 }
-p.true {
-    text-align:center;
-    color:green;
-    padding:5px;
-    font-weight:700;
-    background-color: aliceblue;
-    width: 120px;
-    margin: 40px auto ;
-    font-size:1.2em;
-    display:none;
-}
-p.false {
-    text-align:center;
-    color:red;
-    padding:5px;
-    font-weight:700;
-    background-color: aliceblue;
-    width: 120px;
-    margin: 40px auto ;
-    font-size:1.2em;
-    display:none;
-}
 .tura {
     position: absolute;
     bottom:33px;
     left:15px;
     font-size: 1.4em;
+}
+#equation {
+    padding: 50px 0 30px 0;
+    font-size: 5em;
+}
+#input {
+    display: block;
+    margin:auto;
+    color: black;
+    padding: 5px;
+    font-size: 1.5em;
+    width:120px;
+    outline-style: groove;
+}
+p.true, p.false {
+    padding:5px;
+    font-weight:700;
+    background-color: aliceblue;
+    width: 120px;
+    margin: 40px auto;
+    font-size:1.2em;
+    display:none;
+}
+p.true {
+    color:green;
+}
+p.false {
+    color:red;
+}
+.correct, #correct {
+    color:grey;
 }
 #restart {
     box-sizing: border-box;
@@ -84,11 +101,11 @@ p.false {
     background-color:#97f774;
     color:black;
     font-weight:700;
-    text-align:center;
     padding: 8px;
     cursor: pointer;
     border-radius:10px;
-    
+    outline:none;
+    border: 1px solid transparent;
 }
 #restart:hover {
     border: 1px solid yellow;
@@ -97,20 +114,4 @@ p.false {
 #restart:active {
     background-color:#5799e7;
     border:none;
-}
-#sumUp {
-    font-size:1.5em;
-    display:none;
-    text-align:center;
-}
-#pick {
-    width:200px;
-}
-#zakres {
-    text-align: center;
-    padding: 30px 0 30px 0;
-    box-sizing: border-box;
-}
-#stylizing {
-    height:57px;
 }
