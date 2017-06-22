@@ -1,66 +1,76 @@
 <!DOCTYPE HTML>
 <html lang="pl">
     <head>
+        
         <meta charset="UTF-8">
         <title>Liczenie - trenuj mózg z nami!</title>
         <link type="text/css" rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
-        
-        
+
     </head>
+    
     <body>
-        <p class="menu">Oblicz jak najszybciej</p>
-        <div id="intro" style="text-align:center;font-size:1.3em;">
-        <div id="zakres" style="display:inline-block">
-            Wybierz zakres liczb: <br>
-            <label>30 <input type="radio" name="zakres" value="30" id="n1"></label><br>
-            <label>50 <input type="radio" name="zakres" value="50" id="n2" checked></label><br>
-            <label>75 <input type="radio" name="zakres" value="75" id="n3"></label><br>
-            <label>100 <input type="radio" name="zakres" value="100" id="n4"></label><br>
-            <label>150 <input type="radio" name="zakres" value="150" id="n5"></label><br>
-        </div>
-        <div id="czas" style="display:inline-block">
-            Wybierz ile sekund na rachunek: <br>
-            <label>3 <input type="radio" name="czas" value="3000" id="m1"></label><br>
-            <label>4 <input type="radio" name="czas" value="4000" id="m2"checked></label><br>
-            <label>5 <input type="radio" name="czas" value="5000" id="m3"></label><br>
-            <label>6 <input type="radio" name="czas" value="6000" id="m4"></label><br>
-            <label>7 <input type="radio" name="czas" value="7000" id="m5"></label><br>
-        </div>
-        <div id="tury" style="display:inline-block">
-         Wybierz ile tur: <br>
-         <label>4 <input type="radio" name="tury" value="4" id="l1"></label><br>
-         <label>6 <input type="radio" name="tury" value="6" id="l2" checked></label><br>
-         <label>8 <input type="radio" name="tury" value="8" id="l3"></label><br>
-         <label>10 <input type="radio" name="tury" value="10" id="l4"></label><br>
-         <label>12 <input type="radio" name="tury" value="12" id="l5"></label><br>
-        </div>
-        </div>
-        <div id="stylizing"></div>
-        <p id="sumUp">Udało Ci się uzyskać <span id="points">0</span> punktów!<br>
-        Zajęło Ci to średnio <span id="time"></span> sekund na rachunek.</p>
-        
-        
-        
+
+
+            <h1 class="menu">Oblicz jak najszybciej</h1>
+            <div id="intro">
+
+                <div id="zakres">
+                    Wybierz zakres liczb: <br>
+                    <label>30 <input type="radio" name="zakres" value="30" id="n1"></label><br>
+                    <label>50 <input type="radio" name="zakres" value="50" id="n2" checked></label><br>
+                    <label>75 <input type="radio" name="zakres" value="75" id="n3"></label><br>
+                    <label>100 <input type="radio" name="zakres" value="100" id="n4"></label><br>
+                    <label>150 <input type="radio" name="zakres" value="150" id="n5"></label><br>
+                </div>
+
+                <div id="czas">
+                    Wybierz ile sekund na rachunek: <br>
+                    <label>3 <input type="radio" name="czas" value="3000" id="m1"></label><br>
+                    <label>4 <input type="radio" name="czas" value="4000" id="m2"checked></label><br>
+                    <label>5 <input type="radio" name="czas" value="5000" id="m3"></label><br>
+                    <label>6 <input type="radio" name="czas" value="6000" id="m4"></label><br>
+                    <label>7 <input type="radio" name="czas" value="7000" id="m5"></label><br>
+                </div>
+
+                <div id="tury">
+                 Wybierz ile tur: <br>
+                 <label>4 <input type="radio" name="tury" value="4" id="l1"></label><br>
+                 <label>6 <input type="radio" name="tury" value="6" id="l2" checked></label><br>
+                 <label>8 <input type="radio" name="tury" value="8" id="l3"></label><br>
+                 <label>10 <input type="radio" name="tury" value="10" id="l4"></label><br>
+                 <label>12 <input type="radio" name="tury" value="12" id="l5"></label><br>
+                </div>
+            </div>
+
+            <div id="stylizing"></div>
+            <p id="sumUp">Udało Ci się uzyskać <span id="points">0</span> <span id="word-points"></span>!<br>
+            Zajęło Ci to średnio <span id="time"></span> sekund na rachunek.</p>
+
+
+
         <div id="all">
+
             <p class="tura">Tura: <span id="tura">1</span>/<span id="ile_tur"></span></p>
             <p id="equation">
             <span id="num1">100</span> <span id="znak">+</span> <span id="num2">80</span></p>
             <input id="input" autofocus>
-            
+
             <p class="true">Dobrze!</p>
-            <p class="false">Źle! <span style="color:#bbb">(<span style="color:#aaa" id="correct"></span>)</span></p>
-            
+            <p class="false">Źle! <span class='correct'>(<span id="correct"></span>)</span></p>
+
         </div>
-        
-        
+
+
         <p id="sumup"></p>
-        <p id="restart">START</p>
-        
-            
-        
+        <button id="restart">START</button>
+
+
+
         <script language="javascript" type="text/javascript" src="js/sketch.js"></script>
         <script language="javascript" type="text/javascript" src="js/backstage.js"></script>
+
+
     </body>
 </html>
