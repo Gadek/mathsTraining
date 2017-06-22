@@ -130,11 +130,23 @@ function sumUp() {
     document.getElementById('restart').style.display = 'block';
     document.getElementById('sumUp').style.display = 'block';
     document.getElementById('intro').style.display = 'block';
-    document.getElementById('points').innerHTML = points;
     document.getElementsByClassName('true')[0].style.display = 'none';
     document.getElementsByClassName('false')[0].style.display = 'none';
-    var sredniCzas = Math.floor((czas2 - czas1)/(10*ile_tur))/100;
-    document.getElementById('time').innerHTML = sredniCzas;
+    
+    
+    // --- Napisz ile otrzymanych punktów
+    document.getElementById('points').innerHTML = points;
+    if(points==1) {
+        document.getElementById('word-points').innerHTML = 'punkt'
+    } else if(points>1 && points<5) {
+        document.getElementById('word-points').innerHTML = 'punkty'
+    } else if(points==0 || points>=5) {
+        document.getElementById('word-points').innerHTML = 'punktów'
+    }
+    
+    // --- Napisz średni czas
+    var averageTime = Math.floor((czas2 - czas1)/(10*ile_tur))/100;
+    document.getElementById('time').innerHTML = averageTime;
 }
 
 // --- Odgrywa dźwięk na złą odpowiedź
